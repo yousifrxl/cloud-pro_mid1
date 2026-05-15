@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  redis:
+    image: redis:alpine
+    networks:
+      - devnet
+
+  app1:
+    build: ./app1
+    ports:
+      - "5000:5000"
+    depends_on:
+      - redis
+    networks:
+      - devnet
+
+  app2:
+    build: ./app2
+    ports:
+      - "5001:5001"
+    depends_on:
+      - redis
+    networks:
+      - devnet
+
+networks:
+  devnet:
+  #abbe finshed im bout to push this aswell
